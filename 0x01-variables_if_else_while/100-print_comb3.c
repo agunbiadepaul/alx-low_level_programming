@@ -4,8 +4,8 @@
  * main - Entry point of the program
  *
  * Description: This program prints all possible different combinations
- * of two digits (smallest combination), separated by ', ', and in ascending
- * order, using the putchar function.
+ *              of two digits (smallest combination), separated by ', ',
+ *              and in ascending order, using the putchar function.
  *
  * Return: Always 0 (indicating successful completion)
  */
@@ -20,11 +20,14 @@ int main(void)
 			putchar(num1 + '0');
 			putchar(num2 + '0');
 			if (num1 < 8 || num2 < 9)
-				printf(", ");
+			{
+				putchar(',');
+				putchar(' ');
+			}
 		}
 	}
 
 	putchar('\n');
 
 	return (0);
-}}
+}
