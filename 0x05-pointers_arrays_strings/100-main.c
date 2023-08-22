@@ -2,29 +2,20 @@
 #include <stdio.h>
 
 /**
- * main - check the code
+ * main - Entry point of the program
  *
- * Return: Always 0.
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-	int nb;
+	char str1[] = "12345";
+	char str2[] = "-678";
+	char str3[] = "+42";
+	char str4[] = "hello";
 
-	nb = _atoi("98");
-	printf("%d\n", nb);
-	nb = _atoi("-402");
-	printf("%d\n", nb);
-	nb = _atoi("          ------++++++-----+++++--98");
-	printf("%d\n", nb);
-	nb = _atoi("214748364");
-	printf("%d\n", nb);
-	nb = _atoi("0");
-	printf("%d\n", nb);
-	nb = _atoi("Suite 402");
-	printf("%d\n", nb);
-	nb = _atoi("         +      +    -    -98 Battery Street; San Francisco, CA 94111 - USA             ");
-	printf("%d\n", nb);
-	nb = _atoi("---++++ -++ Sui - te -   402 #cisfun :)");
-	printf("%d\n", nb);
+	printf("Converted value of str1: %d\n", _atoi(str1));
+	printf("Converted value of str2: %d\n", _atoi(str2));
+	printf("Converted value of str3: %d\n", _atoi(str3));
+	printf("Converted value of str4: %d\n", _atoi(str4));
 	return (0);
 }
