@@ -12,7 +12,7 @@ char *cap_string(char *str)
 
 	while (*ptr != '\0')
 	{
-		if (capitalize_next && (*ptr >= 'a' && *ptr <= 'z'))
+		if ((*ptr >= 'a' && *ptr <= 'z') && capitalize_next)
 		{
 			*ptr = *ptr - 'a' + 'A';
 			capitalize_next = 0;
@@ -25,6 +25,10 @@ char *cap_string(char *str)
 			*ptr == '}')
 		{
 			capitalize_next = 1;
+		}
+		else
+		{
+			capitalize_next = 0;
 		}
 
 		ptr++;
