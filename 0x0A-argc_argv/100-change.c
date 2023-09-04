@@ -9,7 +9,8 @@
  */
 int main(int argc, char *argv[])
 {
-	int cents, coins = 0;
+	int cents, coins = 0, coin_values[] = {25, 10, 5, 2, 1};
+	int i;
 
 	if (argc != 2)
 	{
@@ -25,31 +26,11 @@ int main(int argc, char *argv[])
 		return (0);
 	}
 
-	while (cents > 0)
+	for (i = 0; cents > 0; i++)
 	{
-		if (cents >= 25)
+		if (cents >= coin_values[i])
 		{
-			cents -= 25;
-			coins++;
-		}
-		else if (cents >= 10)
-		{
-			cents -= 10;
-			coins++;
-		}
-		else if (cents >= 5)
-		{
-			cents -= 5;
-			coins++;
-		}
-		else if (cents >= 2)
-		{
-			cents -= 2;
-			coins++;
-		}
-		else
-		{
-			cents -= 1;
+			cents -= coin_values[i];
 			coins++;
 		}
 	}
