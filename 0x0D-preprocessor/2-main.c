@@ -1,12 +1,13 @@
 #include "stdio.h"
 
 /**
- * main: check the code
+ * main - Entry point of the program.
  *
- * Return: success
+ * Description: Prints the name of the source file and return 0.
+ *
+ * Return: Always 0 (Success).
  */
-
-int main()
+int main(void)
 {
 	printf("%s\n", __FILE__);
 
