@@ -18,7 +18,5 @@ size_t print_listint(const listint_t *h)
 		numb_of_node++;
 	}
 
-	printf("-> %lu elements\n", numb_of_node);
-
 	return (numb_of_node);
 }
