@@ -1,6 +1,6 @@
-#include "lists.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "lists.h"
 
 /**
  * print_listint_safe - Prints a listint_t linked list safely.
@@ -10,36 +10,22 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slow = head, *fast = head;
+	const listint_t *current = head;
 	size_t node_count = 0;
 
-	while (slow != NULL && fast != NULL && fast->next != NULL)
+	while (current != NULL)
 	{
-		printf("[%p] %d\n", (void *)slow, slow->n);
-		slow = slow->next;
-		fast = fast->next->next;
-
+		printf("[%p] %d\n", (void *)current, current->n);
 		node_count++;
 
-		if (slow == fast)
+		if (current <= current->next)
 		{
-			printf("-> [%p] %d\n", (void *)slow, slow->n);
+			printf("-> [%p] %d\n", (void *)current->next, current->next->n);
 			break;
 		}
-	}
 
-	if (slow == fast)
-	{
-		slow = head;
-		while (slow != fast)
-		{
-			slow = slow->next;
-			fast = fast->next;
-		}
-		printf("-> [%p] %d\n", (void *)slow, slow->n);
-		node_count++;
+		current = current->next;
 	}
 
 	return (node_count);
 }
-
