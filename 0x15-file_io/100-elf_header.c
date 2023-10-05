@@ -36,6 +36,21 @@ void read_bytes(int fd, void *buf, size_t count)
 }
 
 /**
+ * char *get_osabi_name - the function get the value of osabi_name
+ * @osabi: The value to be maped
+ *
+ */
+const char *get_osabi_name(unsigned char osabi)
+{
+	switch (osabi)
+	{
+		case ELFOSABI_SYSV: return "UNIX - System V";
+		case ELFOSABI_NETBSD: return "UNIX - NetBSD";
+		default: return "Unknown OS/ABI";
+	}
+}
+
+/**
  * print_elf_header - Print information from the ELF header.
  * @header: Pointer to the ELF header structure.
  */
@@ -50,17 +65,25 @@ void print_elf_header(const Elf64_Ehdr *header)
 		printf("%02x ", header->e_ident[i]);
 	}
 	printf("\n");
-	printf("  Class:		%s\n",
-			header->e_ident[EI_CLASS] == ELFCLASS64 ? "ELF64" : "ELF32");
-	printf("  Data:			%s\n", header->e_ident[EI_DATA] == ELFDATA2LSB ?
-			"2's complement, little endian" : "2's complement, big endian");
-	printf("  Version:		%d (current)\n", header->e_ident[EI_VERSION]);
-	printf("  OS/ABI:		%s\n", (header->e_ident[EI_OSABI] == ELFOSABI_SYSV) ?
-			"UNIX - System V" : "UNIX - NetBSD");
-	printf("  ABI Version:		%d\n", header->e_ident[EI_ABIVERSION]);
-	printf("  Type:			%s\n", (header->e_type == ET_EXEC) ?
-			"EXEC (Executable file)" : "DYN (Shared object file)");
-	printf("  Entry point address:	0x%lx\n", (unsigned long)header->e_entry);
+
+	printf("  Class:                             ELF%d\n",
+			header->e_ident[EI_CLASS] * 32);
+	printf("  Data:                              %s\n",
+			(header->e_ident[EI_DATA] == ELFDATA2LSB)
+			? "2's complement, little endian"
+			: "2's complement, big endian");
+	printf("  Version:                           %d (current)\n",
+			header->e_ident[EI_VERSION]);
+	printf("  OS/ABI:                            %s\n",
+			get_osabi_name(header->e_ident[EI_OSABI]));
+	printf("  ABI Version:                       %d\n",
+			header->e_ident[EI_ABIVERSION]);
+	printf("  Type:                              %s\n",
+			(header->e_type == ET_EXEC)
+			? "EXEC (Executable file)"
+			: "DYN (Shared object file)");
+	printf("  Entry point address:               0x%lx\n",
+			(unsigned long)header->e_entry);
 }
 
 /**
